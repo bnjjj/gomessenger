@@ -1,5 +1,7 @@
 package gomessenger
 
+import "net/http"
+
 type MessageQuickReply struct {
 	Recipient ObjectWithId             `json:"recipient"`
 	Message   MessageContentQuickReply `json:"message"`
@@ -18,7 +20,7 @@ type QuickReply struct {
 }
 
 // Send a text message using the Send API.
-func (messenger *Messenger) SendQuickReply(recipientId string, text string, quickReplies []QuickReply) {
+func (messenger *Messenger) SendQuickReply(recipientId string, text string, quickReplies []QuickReply) (*http.Response, error) {
 	messageData := MessageQuickReply{
 		Recipient: ObjectWithId{Id: recipientId},
 		Message: MessageContentQuickReply{
@@ -27,5 +29,5 @@ func (messenger *Messenger) SendQuickReply(recipientId string, text string, quic
 		},
 	}
 
-	messenger.CallSendAPI(messageData)
+	return messenger.CallSendAPI(messageData)
 }

@@ -1,5 +1,7 @@
 package gomessenger
 
+import "net/http"
+
 type Message struct {
 	Recipient ObjectWithId `json:"recipient"`
 	Message   MessageText  `json:"message"`
@@ -19,11 +21,11 @@ type Payload struct {
 }
 
 // Send a text message using the Send API.
-func (messenger *Messenger) SendMessageText(recipientId string, messageText string) {
+func (messenger *Messenger) SendMessageText(recipientId string, messageText string) (*http.Response, error) {
 	messageData := Message{
 		Recipient: ObjectWithId{Id: recipientId},
 		Message:   MessageText{Text: messageText},
 	}
 
-	messenger.CallSendAPI(messageData)
+	return messenger.CallSendAPI(messageData)
 }

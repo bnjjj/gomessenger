@@ -1,5 +1,7 @@
 package gomessenger
 
+import "net/http"
+
 type MessageGeneric struct {
 	Recipient ObjectWithId       `json:"recipient"`
 	Message   MessageTextGeneric `json:"message"`
@@ -33,7 +35,7 @@ type ButtonGeneric struct {
 }
 
 // Send a generic message using the Send API.
-func (messenger *Messenger) SendMessageGeneric(recipientId string, messageElt []ElementGeneric) {
+func (messenger *Messenger) SendMessageGeneric(recipientId string, messageElt []ElementGeneric) (*http.Response, error) {
 	messageData := MessageGeneric{
 		Recipient: ObjectWithId{Id: recipientId},
 		Message: MessageTextGeneric{
@@ -47,5 +49,5 @@ func (messenger *Messenger) SendMessageGeneric(recipientId string, messageElt []
 		},
 	}
 
-	messenger.CallSendAPI(messageData)
+	return messenger.CallSendAPI(messageData)
 }

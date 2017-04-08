@@ -1,5 +1,7 @@
 package gomessenger
 
+import "net/http"
+
 type AccountLinking struct {
 	Recipient ObjectWithId          `json:"recipient"`
 	Message   MessageAccountLinking `json:"message"`
@@ -26,7 +28,7 @@ type ButtonsAccountLinking struct {
 }
 
 // Send a message with the account linking call-to-action
-func (messenger *Messenger) SendAccountLinking(recipientId string, url string, text string) {
+func (messenger *Messenger) SendAccountLinking(recipientId string, url string, text string) (*http.Response, error) {
 	messageData := AccountLinking{
 		Recipient: ObjectWithId{Id: recipientId},
 		Message: MessageAccountLinking{
@@ -43,5 +45,5 @@ func (messenger *Messenger) SendAccountLinking(recipientId string, url string, t
 		},
 	}
 
-	messenger.CallSendAPI(messageData)
+	return messenger.CallSendAPI(messageData)
 }

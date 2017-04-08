@@ -25,7 +25,7 @@ func New(accessToken string) *Messenger {
 
 // Call the Send API. The message data goes in the body. If successful, we'll
 // get the message id in a response
-func (messenger *Messenger) CallSendAPI(messageData interface{}) {
+func (messenger *Messenger) CallSendAPI(messageData interface{}) (*http.Response, error) {
 	url := "https://graph.facebook.com/v2.6/me/messages?access_token=" + messenger.AccessToken
 
 	client := &http.Client{}
@@ -47,4 +47,6 @@ func (messenger *Messenger) CallSendAPI(messageData interface{}) {
 	if err != nil {
 		fmt.Println("Error request : " + err.Error())
 	}
+
+	return resp, err
 }
