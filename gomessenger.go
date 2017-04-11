@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 type Messenger struct {
@@ -28,7 +29,10 @@ func New(accessToken string) *Messenger {
 func (messenger *Messenger) CallSendAPI(messageData interface{}) (*http.Response, error) {
 	url := "https://graph.facebook.com/v2.6/me/messages?access_token=" + messenger.AccessToken
 
-	client := &http.Client{}
+	client := &http.Client{
+		Timeout: time.Second * 10,
+	}
+
 	body := new(bytes.Buffer)
 	json.NewEncoder(body).Encode(messageData)
 
