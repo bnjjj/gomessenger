@@ -25,8 +25,8 @@ type PayloadButton struct {
 type Button struct {
 	Type    string `json:"type"`
 	URL     string `json:"url,omitempty"`
-	Payload string `json:"url,omitempty"`
-	Title   string `json:"title"`
+	Payload string `json:"payload,omitempty"`
+	Title   string `json:"title,omitempty"`
 }
 
 // Send a message with buttons
