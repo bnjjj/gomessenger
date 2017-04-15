@@ -22,16 +22,10 @@ type PayloadGeneric struct {
 }
 
 type ElementGeneric struct {
-	Title    string          `json:"title"`
-	Subtitle string          `json:"subtitle"`
-	ImageUrl string          `json:"image_url"`
-	Buttons  []ButtonGeneric `json:"buttons"`
-}
-
-type ButtonGeneric struct {
-	Type    string `json:"type"`
-	Payload string `json:"payload"`
-	Title   string `json:"title"`
+	Title    string   `json:"title"`
+	Subtitle string   `json:"subtitle"`
+	ImageUrl string   `json:"image_url"`
+	Buttons  []Button `json:"buttons"`
 }
 
 // Send a generic message using the Send API.

@@ -11,15 +11,6 @@ type MessageText struct {
 	Text string `json:"text"`
 }
 
-type Attachment struct {
-	Type    string  `json:"type"`
-	Payload Payload `json:"payload"`
-}
-
-type Payload struct {
-	URL string `json:"url"`
-}
-
 // Send a text message using the Send API.
 func (messenger *Messenger) SendMessageText(recipientId string, messageText string) (*http.Response, error) {
 	messageData := Message{
