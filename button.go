@@ -23,10 +23,11 @@ type PayloadButton struct {
 }
 
 type Button struct {
-	Type    string `json:"type"`
-	URL     string `json:"url,omitempty"`
-	Payload string `json:"payload,omitempty"`
-	Title   string `json:"title,omitempty"`
+	Type               string `json:"type"`
+	URL                string `json:"url,omitempty"`
+	Payload            string `json:"payload,omitempty"`
+	Title              string `json:"title,omitempty"`
+	WebviewHeightRatio string `json:"webview_height_ratio,omitempty"`
 }
 
 // Send a message with buttons
