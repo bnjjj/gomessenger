@@ -42,14 +42,16 @@ func (messenger *Messenger) CallSendAPI(messageData interface{}) (*http.Response
 	req.Header.Add("Content-Type", "application/json")
 	resp, err := client.Do(req)
 
+	if err != nil {
+		fmt.Println("Error request : " + err.Error())
+		return resp, err
+	}
+
 	json.NewEncoder(body).Encode(resp.Body)
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
 		fmt.Println("Error http " + strconv.Itoa(resp.StatusCode) + " -> " + body.String())
-	}
-	if err != nil {
-		fmt.Println("Error request : " + err.Error())
 	}
 
 	return resp, err
