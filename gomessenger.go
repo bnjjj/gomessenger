@@ -51,6 +51,7 @@ func (messenger *Messenger) CallSendAPI(messageData interface{}) (*http.Response
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
+		fmt.Println("Error http resp -> " + resp)
 		fmt.Println("Error http " + strconv.Itoa(resp.StatusCode) + " -> " + body.String())
 	}
 

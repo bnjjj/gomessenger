@@ -17,8 +17,9 @@ type AttachmentGeneric struct {
 }
 
 type PayloadGeneric struct {
-	TemplateType string           `json:"template_type"`
-	Elements     []ElementGeneric `json:"elements"`
+	TemplateType     string           `json:"template_type"`
+	ImageAspectRatio string           `json:"image_aspect_ratio,omitempty"`
+	Elements         []ElementGeneric `json:"elements"`
 }
 
 type ElementGeneric struct {
