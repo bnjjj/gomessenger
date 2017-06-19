@@ -1,3 +1,4 @@
+// Gomessenger is a SDK to interact with Facebook Messenger Platform API in Golang
 package gomessenger
 
 import (
